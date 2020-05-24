@@ -2,11 +2,14 @@
 
 const int X=200,Y=150;
 int point_size = 5;
+int old_age = 50;
+int speed = 100;
 float w = X*point_size;
 float h = Y*point_size;
 int play = true;
 bool mouse_down = false;
 int mouse_x, mouse_y;
+
 
 void init()
 {
@@ -102,7 +105,7 @@ void death ()
 for(int i=0;i<X;i++)
     for (int j=0; j<Y; j++)
     {
-        if(p[i][j].age >50) //Custom rule: Old age->death
+        if(p[i][j].age >old_age) //Custom rule: Old age->death
         {
             p[i][i].alive = 0;
             p[i][j].age = 0;
@@ -126,7 +129,7 @@ void timer(int=0)
                 }
     if(play) death(); //Call death function repeatedly while playing
     display(); // Display board
-    glutTimerFunc(100,timer,0); //Iterate, to speed up decrease time argument (here time is set as 100ms)
+    glutTimerFunc(speed,timer,0); //Iterate, to speed up decrease time argument (here time is set as 100ms)
 }
 
 void mouse (int button, int state, int ax, int ay) //Function to get mouse click position
